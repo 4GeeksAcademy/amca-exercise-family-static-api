@@ -11,9 +11,37 @@ from random import randint
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
+        self._next_id = 1
+        self._members = []
+
+    def _generate_id(self):
+        generated_id = self._next_id
+        self._next_id += 1
+        return generated_id
 
         # example list of members
-        self._members = []
+        self._members = [{
+            "age": 33,
+            "first_name": "John",
+            "id": self._generateId,
+            "lastname": self.last_name,
+            "lucky_numbers": [7, 13, 22]
+            },
+            {
+            "age": 35,
+            "first_name": "Jane",
+            "id": self._generateId,
+            "lastname": self.last_name,
+            "lucky_numbers": [10, 14, 3]
+            },
+            {
+            "age": 5,
+            "first_name": "Jimmy",
+            "id": self._generateId,
+            "lastname": self.last_name,
+            "lucky_numbers": [1]
+            }
+        ]
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
@@ -21,16 +49,20 @@ class FamilyStructure:
 
     def add_member(self, member):
         # fill this method and update the return
-        pass
+        return self._members.append(member)
 
     def delete_member(self, id):
         # fill this method and update the return
-        pass
+        for menber in self._members:
+            if menber["id"] == id:
+                self._members.remove(menber)
+
 
     def get_member(self, id):
         # fill this method and update the return
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                return member
 
-    # this method is done, it returns a list with all the family members
-    def get_all_members(self):
+    def get_all_members(self):   
         return self._members
